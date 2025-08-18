@@ -1,0 +1,68 @@
+﻿DS4200 Write Up
+
+Website: https://ketulkapa.github.io/DS4200-Project
+
+
+NBA Championship Interactive Map
+* The mark on this graph is points (circle) and channel is position, color, and size.
+* An interactive map is ideal for showing teams' geographic locations. It makes it easy for audiences to identify spatial patterns for each team's actual location and better visualize their achievements in the championship. 
+* Using color and size together can effectively show the difference in the number of championships each team has won. The reason for using the cool-warm color to show the team winning championships is to better visualize the overall performance in the team's history. Cooler colors represent the team that has won fewer championships, while warmer colors represent the team that has won more championships. In addition, grey is used to represent the team that did not win a championship, allowing users to easily identify those that did.
+* Zooming and tooltips allows users to explore the data at different levels of detail. For example, Lakers and Clipper have a very close home city, zooming feature can allow the users to identify the difference between two close by cities. And tooltips can help the users to identify which team is having more championships if their colours are close to each other.
+
+
+Player Performance Comparison in the NBA Playoffs From the 2012-2013 to 2023-2024 Season Interactive Map
+Marks
+* Points: The primary mark in this visualization is the individual points. Each point represents a player's performance metric which includes points, assists, or rebounds, for a given season year.
+Channels
+Y-axis:
+* Shows the performance metric values for the points, assists, or rebounds.
+* The y-axis shows the magnitude of the performance metrics for each player.
+X-axis:
+* Shows the season year.
+* The x-axis shows the timeline of NBA seasons (2012-13 to 2023-24).
+Color:
+* Shows the player and metric combination.
+* Different colors distinguish between players and their respective metrics. 
+Facets:
+* The metrics (PTS, AST, REB) are separated into individual subplots.
+* This makes it easier to compare specific metrics across seasons without overlap.
+Legends:
+* Provides a mapping of color to player-metric combinations, ensuring users can decode the meaning of each color.
+We chose this visualization because it allows clear tracking of individual player performances across multiple seasons, ensuring trends or changes in performance are noticeable. The use of separate subplots for PTS, AST, and REB reduces visual clutter, making it easier to focus on specific metrics. Also, scatterplots are well-suited for showing individual data points for a large dataset with multiple players without overlapping too much.
+
+
+
+
+
+
+
+
+Benefits of Including Color and Interaction:
+* Using color helps differentiate between players and their respective metrics. It also ensures that the graph remains readable, even with many data points. The legend provides a quick reference for identifying specific player-metric combinations.
+* Making the map interactive allows users to hover over points for more detailed information, such as exact metric values, players, and season years. The interaction makes the visualization dynamic and engaging, which helps the viewers to understand the trends and data better. 
+
+
+Top 30 Players in the Playoffs with the Most Minutes Played Static Map
+* The mark on this graph is the area and the channel is the length of the bars. 
+* A bar graph allows readers for an easier comparison and lets the readers know the top players with the most playoff minutes. Being in descending order makes it easier to follow.
+
+Assist to Turnover Treemap:
+The graph is a treemap, and it uses the following marks and channels to convey the data:
+
+1. Marks:
+   - Rectangles: Each rectangle represents a different NBA team. The size of the rectangles helps to visually distinguish the teams but does not directly encode any specific data variable.
+
+2. Channels:
+   - Color (Hue and Intensity): The color gradient represents the Assist to Turnover Ratio (ATR). Darker shades indicate a higher ATR, while lighter shades represent a lower ATR.
+   - Text: Each rectangle contains text showing the number of championships won by the team, making this information explicitly visible for comparison.
+   - Position: The placement of rectangles organizes the teams visually but does not encode specific data values like ranking or performance.
+   - Size: While the size of the rectangles might imply significance, it does not directly correspond to championship wins or ATR. It may be based on layout design choices.
+
+This combination of marks and channels effectively conveys two key metrics: efficiency (ATR) through color intensity and historical success (championships) through text labels.
+
+3-Points Shooting Evolution Trend
+* The mark on this graph is line , it represents trends over seasons and channel is color to differentiate two different analyses (3 point made or attempted analysis).
+* Choosing a line plot because it is perfect for displaying trends over time and it can better tell the story for time series analysis like this. In this case, it shows how the number of 3-pointers has evolved across seasons and tells how 3 point is now a major scoring method instead of other types.
+3-Point Field Goals per Game - Latest Playoff Season
+* The mark on this graph is the area and the channel is the length of the bars. 
+* I chose a bar graph because it allows readers to make comparisons and see which players have the most 3 points per game in the latest playoff season. Readers can identify which players are close in 3 points per game in the latest playoffs and use this information to make predictions.

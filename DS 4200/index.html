@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NBA Playoff Analysis</title>
+</head>
+
+<body>
+    <header>
+        <h1 class='title'>NBA Playoff Analysis</h1>
+        <nav>
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='subpages/interactive.html'">Overview</button>
+            <button onclick="location.href='subpages/static.html'">Deeper Analysis</button>
+            <button onclick="location.href='subpages/future.html'">Conclusion / Future Findings</button>
+        </nav>
+    </header>
+    <main>
+        <div style="display: flex;
+            flex-direction: column;
+            align-items: center;">
+            <h2>
+                Topic Introduction:
+            </h2>
+            <div class="card">
+                <p>
+                    The factors influencing performance and success in NBA teams are multifaceted, blending individual
+                    player metrics with overall team dynamics. This complexity makes it a fascinating area for data
+                    science research. By analyzing how variables like points scored, playing time, assists, and rebounds
+                    contribute to both player and team success, we can uncover valuable insights into strategies that
+                    drive championship victories. This research goes beyond identifying standout players—it explores how
+                    their performances align with team outcomes, shedding light on the key differentiators of
+                    championship-winning teams. Through the analysis of historical data and visualization of trends and
+                    correlations, this study aims to identify patterns that can provide valuable lessons for coaches,
+                    analysts, and basketball enthusiasts alike. Ultimately, this research will deepen our understanding
+                    of what drives success in professional basketball, offering strategic insights for future decisions
+                    in team building and game planning.
+                </p>
+                <ul>
+                    <h4>
+                        References:
+                    </h4>
+                    <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7241640/">Relationships between Playing Time and Selected NBA Combine Test Performance in Division I Mid-Major Basketball Players</a></li>
+                    <li><a href="https://www.researchgate.net/publication/366579989_Research_on_the_Developing_Trend_and_Strategies_of_the_NBA_Games_and_NBA_Players">Research on the Developing Trend and Strategies of the NBA Games and NBA Players</a></li>
+                    <li><a href="https://journals.lww.com/nsca-jscr/fulltext/2013/03000/performance_changes_in_nba_basketball_players_vary.8.aspx">Performance Changes in NBA Basketball Players Vary in Starters vs. Nonstarters Over a Competitive Season</a></li>
+                </ul>
+            </div>
+            <h2>
+                About Our Main Dataset
+            </h2>
+            <div class="card">
+                <p>
+                    The data we are using is the NBA playoff data. The data source is reliable because all data are
+                    collected from the official website, which brings up credibility. It doesn’t contain any player's
+                    personal information like contact and address therefore, it doesn’t violate the privacy problem.
+                    This data represents the player’s performance in different playoffs with all their stats. The data
+                    has 2,576 rows with 30 columns. Most columns are made up of different statistics, which are valuable
+                    in evaluating a player’s performance. Metrics like field goals made and offensive rebounds allow us
+                    to analyze a player’s abilities from multiple perspectives. In addition, we also have the year of
+                    the playoff season, team, and player, as well as a rank we can use to analyze this data. This data
+                    is sourced from Kaggle and represents NBA data in the past decade. The following will be a link to
+                    the dataset and column information.
+                </p>
+                <a
+                    href="https://www.kaggle.com/datasets/shivamkumar121215/nba-stats-dataset-for-last-10-years?select=Playoffs.csv">NBA
+                    Players Data</a>
+            </div>
+            <h2>
+                About Our Supplemental Datasets
+            </h2>
+            <div class="card">
+                <h3>
+                    Championship Data
+                </h3>
+                <p>
+                    The data is used as a sub-dataset, which is collected from Statista. The data source is most
+                    up-to-date and from the NBA’s official website, which brings up the credibility of the data
+                    accuracy. It doesn’t contain any player’s personal information like contact and address therefore,
+                    it doesn’t violate the privacy problem. The data contains three columns and 22 rows, and it is in
+                    csv format. The championship data includes information about the championship that each team has
+                    won, the home city of each team, and the team that won the championship. We plan to make a map to
+                    visualize the championship for each team better.
+                </p>
+                <a href="https://www.statista.com/statistics/1178771/nba-championships-team/">NBA
+                    Championship Data</a>
+            </div>
+            <div class="card">
+                <h3>
+                    Geographic Data
+                </h3>
+                <p>
+                    The geographic data for United States Cities are from SimpleMaps. The data is built using authorized
+                    sources such as the US Census Bureau, US Geological Survey, and USGS. These are all
+                    government-authorized sources, and this has made the data reliable. Instead of in the file, the data
+                    is in CSV, and it is in the format of longitude and latitude, which can help locate the most
+                    accurate location for each team's home city.
+                </p>
+                <a href="https://simplemaps.com/data/us-cities">Geographic Data</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

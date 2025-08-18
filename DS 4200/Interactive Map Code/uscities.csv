@@ -1,0 +1,31 @@
+city,city_ascii,state_id,state_name,county_name,lat,lng
+Boston ,Boston,MA,Massachusetts,Suffolk,42.3188,-71.0852
+Los Angeles ,Los Angeles,CA,California,Los Angeles,34.1141,-118.4068
+Golden State ,Golden State ,CA,California,San Francisco,37.7558,-122.4449
+Chicago,Chicago,IL,Illinois,Cook,41.8375,-87.6866
+San Antonio,San Antonio,TX,Texas,Bexar,29.4632,-98.5238
+Philadelphia,Philadelphia,PA,Pennsylvania,Philadelphia,40.0077,-75.1339
+Detroit,Detroit,MI,Michigan,Wayne,42.3834,-83.1024
+Miami,Miami,FL,Florida,Miami-Dade,25.784,-80.2101
+Houston,Houston,TX,Texas,Harris,29.786,-95.3885
+New York,Manhattan,NY,New York,New York,40.7834,-73.9662
+Milwaukee,Milwaukee,WI,Wisconsin,Milwaukee,43.0642,-87.9675
+Denver,Denver,CO,Colorado,Denver,39.762,-104.8758
+Toronto ,Toronto ,CANADA,Canada,Canada,43.65107,-79.347015
+Cleveland,Cleveland,OH,Ohio,Cuyahoga,41.4764,-81.6805
+Dallas,Dallas,TX,Texas,Dallas,32.7935,-96.7667
+Oklahoma City,Oklahoma City,OK,Oklahoma,Oklahoma,35.4676,-97.5136
+Washington,Washington,DC,District of Columbia,District of Columbia,38.9047,-77.0163
+Portland,Portland,OR,Oregon,Multnomah,45.5371,-122.65
+Atlanta,Atlanta,GA,Georgia,Fulton,33.7628,-84.422
+Sacramento,Sacramento,CA,California,Sacramento,38.5677,-121.4685
+Brooklyn,Brooklyn,NY,New York,Kings,40.6501,-73.9496
+Charlotte,Charlotte,NC,North Carolina,Mecklenburg,35.2083,-80.8303
+Indianapolis,Indianapolis,IN,Indiana,Marion,39.7771,-86.1458
+Inglewood,Inglewood,CA,California,Los Angeles,33.9566,-118.3444
+Memphis,Memphis,TN,Tennessee,Shelby,35.1087,-89.9663
+Minnesota City,Minnesota City,MN,Minnesota,Winona,44.0923,-91.75
+New Orleans Station,New Orleans Station,LA,Louisiana,Plaquemines,29.8314,-90.0211
+Orlando,Orlando,FL,Florida,Orange,28.4773,-81.337
+Phoenix,Phoenix,AZ,Arizona,Maricopa,33.5722,-112.0892
+Salt Lake City,Salt Lake City,UT,Utah,Salt Lake,40.7776,-111.9311

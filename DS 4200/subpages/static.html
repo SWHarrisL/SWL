@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="../style.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../scripts/logic.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NBA Playoff Analysis</title>
+</head>
+
+<body>
+    <header>
+        <h1 class='title'>Deeper Analysis</h1>
+        <nav>
+            <button onclick="location.href='../index.html'">Home</button>
+            <button onclick="location.href='interactive.html'">Overview</button>
+            <button onclick="location.href='static.html'">Deeper Analysis</button>
+            <button onclick="location.href='future.html'">Conclusion / Future Findings</button>
+        </nav>
+    </header>
+    <main>
+        <div class="chart-container">
+            <h2>
+                Top 30 Players in the Playoffs with the Most Minutes Played
+            </h2>
+            <embed type="text/html" src="../charts/top_30_playoff_minutes.html" width="1000" height="650" class="card">
+            <p class="card">
+                This chart shows the 30 players that have the most playoff minutes. It shows Lebron leading by a
+                substantial amount. This makes sense because Lebron played for many championship teams, which increases
+                his minutes. Lebron is also a star player and arguably one of the best players to ever play the game.
+                Players like Draymond Green, Durant, Kawhi and Stephen Curry have high playoff minutes, which is a
+                reflection of their experience and the success of their teams. Winning more playoff games, gives them
+                more chances to play and increase their playing time. These players have lots of experience in the
+                playoffs and have deep runs and often reach the finals. This chart has young players who are on the rise
+                and are gaining more playoff experience. An example is Jayson Tatum. Although he is relatively young, he
+                plays a key role in the Celtic's playoff success and is trusted with heavy playoff minutes
+            </p>
+        </div>
+        <div class="chart-container">
+            <h2>
+                Assist to Turnover Ratio and NBA Championships
+            </h2>
+            <img src="../charts/assist to turnover team.png" width="1000" height="600" class="card">
+            <p class="card">
+                The chart illustrates the relationship between NBA teams' Assist to Turnover Ratios (ATR) and their
+                historical championship wins. The Boston Celtics and Los Angeles Lakers lead with 18 and 17
+                championships, respectively, despite having moderate ATRs, showing that factors beyond ATR contribute
+                significantly to success. Teams like the Timberwolves, Suns, and Clippers have high ATRs but no
+                championships, indicating that efficiency in assists relative to turnovers alone does not guarantee
+                titles. On the other hand, teams like the Bulls (6 championships) and Warriors (7 championships) have
+                found success with balanced ATRs, reflecting a broader strategic approach. The chart highlights that
+                while a strong ATR can signal effective teamwork and ball handling, it is only one component of the
+                complex formula for achieving championships in the NBA.
+            </p>
+        </div>
+        <div class="chart-container">
+            <h2>
+                3-Point Field Goals per Game - Latest Playoff Season
+            </h2>
+            <embed type="text/html" src="../Static Plots Code/3pt.html" width="1000" height="750" class="card">
+            <p class="card">
+                This chart shows the players who made the most 3-point field goals per game in the latest playoffs.
+                It depicts newer talents and veteran players. Players like Curry, Harden, and Lillard stand out because
+                of their reputations as sharp 3-point shooters and their key roles for their teams. They also have more
+                experience in the playoffs and more chances to take 3’s during playoff games. The chart showcases newer
+                talents such as Donovan Mitchell. Although Mitchell has been in the NBA for less time compared to other
+                names, he leads in the number of 3s per playoff games. In addition to showing the players who made the
+                most 3’s in playoff games, the chart highlights the gap between elite shooters like Curry, who is
+                renowned for his deep shooting range and high volume, and other skilled shooters who still contribute
+                significantly but at a lower frequency and indicates a strategic emphasis on how 3s are shot.
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>

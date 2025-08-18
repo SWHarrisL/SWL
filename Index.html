@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siowa Luo - Business Analytics & Data Science</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #000000;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 1;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #1e3c72;
+            color: white;
+        }
+
+        /* Page Content Container */
+        .page-content {
+            min-height: 70vh;
+        }
+
+        /* Resume Content (Profile Page) */
+        .resume-content {
+            background: white;
+            max-width: 800px;
+            margin: -2rem auto 0;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Projects Page */
+        .projects-page {
+            background: white;
+            max-width: 1000px;
+            margin: 2rem auto 0;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .page-title {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+
+        .coming-soon h3 {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Course Sections */
+        .course-section {
+            margin-bottom: 4rem;
+        }
+
+        .course-title {
+            color: #1e3c72;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #1e3c72;
+            padding-bottom: 0.5rem;
+        }
+
+        .course-description {
+            text-align: center;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Projects Grid (for when content is added) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            border-top: 4px solid #1e3c72;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-card h3 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #1e3c72;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #1e3c72;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .project-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Hide/Show Pages */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Section Styling (for Profile page) */
+        .resume-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .resume-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            color: #1e3c72;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #1e3c72;
+            padding-bottom: 0.5rem;
+        }
+
+        /* About/Summary */
+        .summary {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .degree-info h3 {
+            color: #1e3c72;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .school-info {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .location-date {
+            color: #666;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .education-details {
+            margin-top: 0.8rem;
+            color: #555;
+        }
+
+        .education-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        .inline-list {
+            display: inline;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 2rem;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .job-info h3 {
+            color: #1e3c72;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .company-info {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .job-location {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .job-duration {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .responsibilities {
+            list-style: none;
+            padding: 0;
+        }
+
+        .responsibilities li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .responsibilities li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .project-title {
+            color: #1e3c72;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .project-type {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .project-date {
+            color: #666;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-group h4 {
+            color: #1e3c72;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .skill-list {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #f8f9fa;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .resume-content,
+            .projects-page {
+                margin: -1rem auto 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .education-header,
+            .experience-header,
+            .project-header {
+                flex-direction: column;
+            }
+
+            .location-date,
+            .job-duration,
+            .project-date {
+                text-align: left;
+                margin-top: 0.3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav {
+                display: none;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+            
+            header {
+                background: white;
+                color: black;
+                padding: 1rem 0;
+            }
+            
+            .resume-content {
+                box-shadow: none;
+                margin: 0;
+                padding: 1rem;
+            }
+            
+            .section-title {
+                color: black;
+                border-bottom-color: black;
+            }
+            
+            .job-info h3,
+            .degree-info h3,
+            .project-title {
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Siowa Luo</h1>
+                <p class="subtitle">Business Analytics & Data Science Professional</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <a href="mailto:luo.sio@northeastern.edu">luo.sio@northeastern.edu</a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="tel:3473303951">347-330-3951</a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://www.linkedin.com/in/siowa-luo-4b397b227/" target="_blank">LinkedIn Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#profile" class="nav-link active">Profile</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-content">
+            
+            <!-- Profile Page -->
+            <div id="profile-page" class="page active">
+                <div class="resume-content">
+                    
+                    <!-- Professional Summary -->
+                    <div class="resume-section">
+                        <h2 class="section-title">Professional Summary</h2>
+                        <p class="summary">
+                            Driven Business Analytics and Data Science student with proven expertise in financial analysis, investment management, and data-driven decision making. Demonstrated success managing $20M+ investment portfolios at Bain Capital and handling $30M+ in corporate tax projects. Combines strong analytical skills with business acumen, complemented by entrepreneurial experience as a published digital novelist with 200,000+ views and 24,000 subscriptions. Seeking opportunities to leverage quantitative analysis and strategic thinking in challenging business environments.
+                        </p>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="resume-section">
+                        <h2 class="section-title">Education</h2>
+                        <div class="education-item">
+                            <div class="education-header">
+                                <div class="degree-info">
+                                    <h3>Bachelor of Science in Business Administration</h3>
+                                    <p class="school-info">Northeastern University</p>
+                                </div>
+                                <div class="location-date">
+                                    <p>Boston, MA</p>
+                                    <p>Expected May 2026</p>
+                                </div>
+                            </div>
+                            <div class="education-details">
+                                <p><strong>Dual Concentration:</strong> Business Analytics and Data Science</p>
+                                <p><strong>Schools:</strong> D'Amore McKim School of Business & Khoury College of Computer Sciences</p>
+                                <p><strong>GPA:</strong> 3.68/4.00</p>
+                                <p><strong>Awards:</strong> <span class="inline-list">Bloomberg Market Concept Certificate, Google Analytics Certificate, Dean's List</span></p>
+                                <p><strong>Relevant Coursework:</strong> <span class="inline-list">Advanced Data Science, Financial Accounting, Managerial Accounting, Financial Management, Data Management, Data Mining, Information Visualization, Machine Learning</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Experience -->
+                    <div class="resume-section">
+                        <h2 class="section-title">Professional Experience</h2>
+                        
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Finance Co-op</h3>
+                                    <p class="company-info">Bain Capital, L.P.</p>
+                                    <p class="job-location">Boston, MA</p>
+                                </div>
+                                <div class="job-duration">January 2025 - June 2025</div>
+                            </div>
+                            <ul class="responsibilities">
+                                <li>Reconciled cash activities across LP and GP accounts ensuring accuracy between bank records and accounting system (Investran)</li>
+                                <li>Managed cash management, capital calls, corporate repayment, monthly cash reconciliation, and tax analysis for PWC</li>
+                                <li>Prepared 20 investment folders for Venture deals and allocated co-investor capital with total value of $20M</li>
+                                <li>Prepared quarterly valuations for Venture and Crypto funds to ensure accurate investment decisions and investor reporting</li>
+                                <li>Created compliance documents regarding section 17(d) and ADV filing to support firm's transparency and legal compliance</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Tax Co-op</h3>
+                                    <p class="company-info">Kahn Litwin Renza & Co Ltd (Ohio)</p>
+                                    <p class="job-location">Boston, MA</p>
+                                </div>
+                                <div class="job-duration">January 2024 - April 2024</div>
+                            </div>
+                            <ul class="responsibilities">
+                                <li>Prepared individual, trust, and corporate tax returns (1040, 1041, 1065, 1120, 1120s)</li>
+                                <li>Developed proficiency in tax preparation software: CCH Axcess, SP Binder, Engagement, CXM, CNG</li>
+                                <li>Assisted senior tax manager on tax projects valued at $30M+ to enhance efficiency in tax preparation</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Accounting Co-op</h3>
+                                    <p class="company-info">The Community Builders, Inc.</p>
+                                    <p class="job-location">Boston, MA</p>
+                                </div>
+                                <div class="job-duration">January 2023 - June 2023</div>
+                            </div>
+                            <ul class="responsibilities">
+                                <li>Audited over 150 draft and final tax returns in compliance with US state and federal law</li>
+                                <li>Coded 50 development and American Express invoices weekly in Yardi system</li>
+                                <li>Utilized advanced Excel to monitor and record financial activities for 15 corporate-level petty cash accounts</li>
+                                <li>Completed monthly cash analysis for 400 Eastern & Key Bank accounts</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-info">
+                                    <h3>Digital Novelist</h3>
+                                    <p class="company-info">China Literature Ltd</p>
+                                    <p class="job-location">Shanghai, China</p>
+                                </div>
+                                <div class="job-duration">May 2017 - Present</div>
+                            </div>
+                            <ul class="responsibilities">
+                                <li>Implemented monthly primary research to identify trending topics and capture audience preferences</li>
+                                <li>Authored and published 3 digital novels on China Literature Limited platform</li>
+                                <li>Developed CRM system and reader engagement platform for each novel</li>
+                                <li>Acquired 24,000 subscriptions and 200,000 views within five-year period</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Projects & Leadership -->
+                    <div class="resume-section">
+                        <h2 class="section-title">Projects & Leadership</h2>
+                        <div class="project-item">
+                            <div class="project-header">
+                                <div>
+                                    <h3 class="project-title">Marketplace Simulation</h3>
+                                    <p class="project-type">Marketing Leadership Project | Boston, MA</p>
+                                </div>
+                                <div class="project-date">May 2022 - July 2022</div>
+                            </div>
+                            <ul class="responsibilities">
+                                <li>Executed weekly competitor market analysis to forecast competitor decisions and identify potential risks & opportunities</li>
+                                <li>Distributed 32 sales forces and opened 4 strategic locations in simulation to improve competitive advantage</li>
+                                <li>Enhanced company branding and product image through data-driven strategic positioning</li>
+                                <li>Achieved 2 gold trophies and won top 10% ranking in marketplace simulation history</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="resume-section">
+                        <h2 class="section-title">Skills & Expertise</h2>
+                        <div class="skills-container">
+                            <div class="skill-group">
+                                <h4>Technical Skills</h4>
+                                <p class="skill-list">Python, SQL, R, JavaScript, HTML, Tableau, Microsoft Office (PowerPoint, Excel), Salesforce, CRM</p>
+                            </div>
+                            
+                            <div class="skill-group">
+                                <h4>Languages</h4>
+                                <p class="skill-list">English, Chinese Mandarin, Cantonese</p>
+                            </div>
+                            
+                            <div class="skill-group">
+                                <h4>Areas of Interest</h4>
+                                <p class="skill-list">Strategy & Operations, Analytics, Career Consulting, Financial Analysis, Investment Management</p>
+                            </div>
+                            
+                            <div class="skill-group">
+                                <h4>Personal Interests</h4>
+                                <p class="skill-list">Fencing, Digital Publishing, Hiking, Chamber Choir</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Projects Page -->
+            <div id="projects-page" class="page">
+                <div class="projects-page">
+                    <h1 class="page-title">Projects</h1>
+                    <p class="page-subtitle">Academic and Technical Projects by Course</p>
+                    
+                    <!-- DS 4200 Section -->
+                    <div class="course-section">
+                        <h2 class="course-title">DS 4200: Information Visualization</h2>
+                        <p class="course-description">Projects focused on data visualization, interactive graphics, and web-based analytics using HTML, CSS, JavaScript, and D3.js</p>
+                        
+                        <div class="projects-grid">
+                            <!-- NBA Analysis Project -->
+                            <div class="project-card">
+                                <h3>NBA Analysis</h3>
+                                <p class="project-meta">Sports Analytics & Data Visualization</p>
+                                <p class="project-description">
+                                    Comprehensive analysis of NBA player performance, team statistics, and game outcomes using advanced statistical methods. Features interactive visualizations and data-driven insights into basketball analytics.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">HTML</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">D3.js</span>
+                                    <span class="tech-tag">Data Visualization</span>
+                                    <span class="tech-tag">Sports Analytics</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="DS%204200/NBA%20Analysis%20index.html" class="project-link" target="_blank">View Project</a>
+                                </div>
+                            </div>
+
+                            <!-- Network Analysis Project -->
+                            <div class="project-card">
+                                <h3>Network Analysis: Primate Social Networks & Personal Networks</h3>
+                                <p class="project-meta">Jupyter Notebook Analysis | Exported HTML Report</p>
+                                <p class="project-description">
+                                    Complete network analysis assignment exported from Jupyter Notebook. Analyzed Wolfe Primates social interaction dataset using Python, created adjacency matrix visualizations, performed edgelist conversions, and built both static and interactive network graphs. Includes personal social network analysis and data visualization theory discussion.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Jupyter Notebook</span>
+                                    <span class="tech-tag">NetworkX</span>
+                                    <span class="tech-tag">Matplotlib</span>
+                                    <span class="tech-tag">Pandas</span>
+                                    <span class="tech-tag">Pyvis</span>
+                                    <span class="tech-tag">Network Analysis</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="DS%204200/Network%20Analysis.html" class="project-link" target="_blank">View HTML Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CS 3200 Section -->
+                    <div class="course-section">
+                        <h2 class="course-title">CS 3200: Introduction to Database Design</h2>
+                        <p class="course-description">Comprehensive database project involving schema design, data loading, stored procedures, and analytical reporting using R, MySQL, and cloud databases</p>
+                        
+                        <div class="projects-grid">
+                            <!-- Database Management System Project -->
+                            <div class="project-card">
+                                <h3>Flight Incident Database Management System</h3>
+                                <p class="project-meta">Complete Database Solution | Summer 2025</p>
+                                <p class="project-description">
+                                    End-to-end database management system for airline incident tracking with 18,000+ records. Features modular R scripts for schema creation, ETL processing, stored procedure implementation, automated testing, and comprehensive analytical reporting. Includes seasonal trend analysis, airline performance metrics, and multi-year statistical insights with data visualizations.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">R</span>
+                                    <span class="tech-tag">MySQL</span>
+                                    <span class="tech-tag">Cloud Database</span>
+                                    <span class="tech-tag">Stored Procedures</span>
+                                    <span class="tech-tag">ETL Pipeline</span>
+                                    <span class="tech-tag">R Markdown</span>
+                                    <span class="tech-tag">Data Visualization</span>
+                                    <span class="tech-tag">Statistical Analysis</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="CS3200/" class="project-link" target="_blank">View Database Scripts</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Course Sections (commented out for when you add more projects) -->
+                    <!--
+                    <div class="course-section">
+                        <h2 class="course-title">Course Name: Course Title</h2>
+                        <p class="course-description">Description of course focus and technologies used</p>
+                        <div class="projects-grid">
+                            <!-- Future project cards will go here -->
+                        </div>
+                    </div>
+                    -->
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Siowa Luo | Professional Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav links
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    
+                    // Add active class to clicked nav link
+                    this.classList.add('active');
+                    
+                    // Hide all pages
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // Show the selected page
+                    const targetPage = this.getAttribute('href').replace('#', '') + '-page';
+                    document.getElementById(targetPage).classList.add('active');
+                });
+            });
+        });
+
+        // Print functionality (for Profile page)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                const profilePage = document.getElementById('profile-page');
+                if (profilePage.classList.contains('active')) {
+                    window.print();
+                }
+            }
+        });
+
+        // Smooth animations on load
+        window.addEventListener('load', function() {
+            const activeContent = document.querySelector('.page.active .resume-content, .page.active .projects-page');
+            if (activeContent) {
+                activeContent.style.animation = 'fadeInUp 0.8s ease-out';
+            }
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

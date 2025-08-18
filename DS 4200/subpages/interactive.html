@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="../style.css">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../scripts/interactive.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NBA Playoff Analysis</title>
+</head>
+
+<body>
+    <header>
+        <h1 class='title'>Overview</h1>
+        <nav>
+            <button onclick="location.href='../index.html'">Home</button>
+            <button onclick="location.href='interactive.html'">Overview</button>
+            <button onclick="location.href='static.html'">Deeper Analysis</button>
+            <button onclick="location.href='future.html'">Conclusion / Future Findings</button>
+        </nav>
+    </header>
+    <main>
+        <div class="loading-bar-container" id="loading-bar-container">
+            <div id="loading-indicator" class="loading-bar"></div>
+        </div>
+        <div class="chart-container">
+            <h2>
+                NBA Championships Won by Each Team
+            </h2>
+            <embed type="text/html" src="../Interactive Map Code/nba_championships_map.html" width="1000" height="700"
+                class="card">
+        </div>
+        <div style="display: flex;
+        flex-direction: column;
+        align-items: center;">
+            <h3>
+                How to Interact with the Map
+            </h3>
+            <p class="card">
+                We created an interactive map to visualize the championship status for each team across various cities
+                in the United States. For each city, we set the mark to a circle, and it is an interactive feature. By
+                clicking on the mark (circle), a pop-up text will display detailed information about the city, team
+                name, and the exact number of championships that the team has won. The markers are color-coded and have
+                different sizes to show different championship counts. This feature will provide a quick visual
+                reference for the audience before selecting any marks they are interested in. Additionally, the map
+                could be zoomed in or out using the control button or by scrolling. This feature helps the audience to
+                better explore a specific region or view the map from a broader perspective.
+            </p>
+            <h3>
+                Analysis of the NBA Championships Interactive Map
+            </h3>
+            <p class="card">
+                The NBA Championships Interactive map shows a big picture of the geographic distribution of
+                championships between 1964 and 2024. Major cities such as Boston and Los Angeles lead the map with the
+                most championships, showing the historical success of teams like the Celtics and Lakers. This
+                observation shows the team that has won more titles is likely to have strong management, consistent
+                player development, and market size that may have contributed to their success in these teams.
+                Meanwhile, some teams, such as Phoenix and Brooklyn, haven’t won a championship yet, showing a situation
+                of disparities in team performance over time. This map provides valuable historical evidence of the
+                competitive landscape for each team in the NBA history.
+                In the future, we could enhance this analysis to show more in-depth features with the map to bring a
+                better landscape to the audience. We could do this by incorporating additional data such as team
+                performance trends, player contribution, or economic impact on the cities. We can add more interactive
+                features like time-lapse to display how championship distribution has evolved over the years to provide
+                a more in-depth insight into shifts in team dynamics. Lastly, we could integrate predictive analysis to
+                help identify teams that likely to win future championships based on historical and current performance
+                metrics.
+            </p>
+        </div>
+        <div class="chart-container">
+            <h2>
+                Player Performance Comparison in the NBA Playoffs From the 2012-2013 Season to 2023-2024 Season
+            </h2>
+            <embed type="text/html" src="../charts/nba_playoffs_performance.html" width="1000" height="700" class="card">
+        </div>
+        <div style="display: flex;
+        flex-direction: column;
+        align-items: center;">
+            <h3>
+                How to Interact with the Plot
+            </h3>
+            <p class="card">
+                This interactive scatter plot shows points scored (PTS) by each NBA player along with number of assists
+                (AST) and rebounds (REB) across seasons from 2012-13 to 2023-24. Each. player will have three different
+                markers, representing each metric in detail. This plot can be interacted with by clicking on the name of
+                the desired player through the legend, which isolates data for that specific player and removes the
+                other players from the graph. This allows focused analysis of one player's performance against others
+                across seasons. Moreover, users can click their names to add multiple players back onto the graph to
+                compare player performances. This interaction helps analyze any trends or performance differences
+                between players over various seasons.
+            <h3>
+                Analysis of the Player Performance Comparison Interactive Plot
+            </h3>
+            <p class="card">
+                The interactive plot allows us to see the key insights into player performance trends and their
+                contributions to team success. The individual strengths are shown as a dispersion among the metrics,
+                which shows the difference in the roles of players. A player like LeBron James may come off as one of
+                the best in all three features which are PTS, AST, REB consistently. However, other players, for
+                example, Kevin Durant, might just be one of the top players in scoring but the plot shows how he may
+                comparatively have less assists or rebounds. In addition, it shows seasonal patterns, such as decreases
+                consistency, or peak years, which can be useful in tracking how players change over time. In this way,
+                people can evaluate a player's long-term value to their team or compare exceptional seasons. The plot
+                also emphasizes how teams strategically depend on certain players for specific functions, such as
+                rebounding, assisting, or scoring. If a player is balanced and has contributions to all three metrics,
+                it could suggest a player's more diversified role on the team. However, if a player has consistent high
+                scoring, it could suggest that he is the team's anchor, based around his offence. For analysts, coaches,
+                and fans, the analysis that follows links these specific performances to more comprehensive strategies
+                and achievements.
+            </p>
+        </div>
+        <div class="chart-container">
+            <h2>
+                3-Point vs. 2-Point Shooting Evolution in the Playoffs
+            </h2>
+            <embed type="text/html" src="../Static Plots Code/3 Point made history/nba_playoff_shooting_trend.png"
+                width="1100" height="875"
+                style="background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 2rem; margin: 2rem; max-width: 1100px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <p class="card">
+                Some key observation our team found is the three point attempts and makes shows an increasing trend from
+                2012-2024 with 3 point made per game increasing by 68% over the past 12 years from 0.68 to 1.14. This
+                finding shows that the team has shifted scoring strategies and is focusing more on making 3's. This is
+                an evolutionary change because effectively making 3's can help the team score more points compared to
+                the team still focusing on 2 point strategies. Conversely, 2-point attempts show a downward trend over
+                this period due to 3-point strategies. Overall, this visualization reflects the NBA's 3-point revolution
+                even in the playoff season, where players usually choose to shoot more 2 points (safer way to score).
+                Players and teams are now using strategies that prioritize 3-point shots while maintaining consistent
+                efficiency in 2-point shooting (2-point made per game has not significantly changed in the past 12
+                seasons).
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>

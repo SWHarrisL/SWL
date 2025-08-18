@@ -1,0 +1,262 @@
+---
+title: "Analyze Incidents & Flights"
+author: "SioWa Luo"
+date: "Summer 2, 2025"
+output:
+  pdf_document: default
+  html_document: default
+subtitle: CS3200 Final Project
+---
+
+```{r connectToDatabase, eval = T, echo = F, message = F, warning = F}
+# Import Necessary Library
+library(RMySQL)
+library(DBI)
+library(kableExtra)
+
+# Define Setting
+db_host_aiven <- "mysql-cs3200-northeastern-cs3200.k.aivencloud.com"
+db_port_aiven <- 22967
+db_name_aiven <- "defaultdb"
+db_user_aiven <- "avnadmin"
+db_pwd_aiven <- "AVNS_b8LFfIb2ijYwEuui_FU"
+
+# Embedded SSL certificate
+db_cert <- 
+"
+-----BEGIN CERTIFICATE-----
+MIIEUDCCArigAwIBAgIUDSsZAl6kvMb0yrAdHFvhOPbcJ70wDQYJKoZIhvcNAQEM
+BQAwQDE+MDwGA1UEAww1YzNiYTJlNTMtNDA5NS00YjM3LWEwYmUtNDllODgwODBl
+ODI4IEdFTiAxIFByb2plY3QgQ0EwHhcNMjUwODAzMjE0NDEzWhcNMzUwODAxMjE0
+NDEzWjBAMT4wPAYDVQQDDDVjM2JhMmU1My00MDk1LTRiMzctYTBiZS00OWU4ODA4
+MGU4MjggR0VOIDEgUHJvamVjdCBDQTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCC
+AYoCggGBAL5qvx5moiDVHp44nyhjUIeYz9naW7pVPqb9ZSF+USu2IXh4zjFH24Js
+hxCu/kdALiQfcgjWUisBnPmguuV+GCTqEYrmfIpD7tEmp5Zls1s4eWL4YtNYMO9p
+mhHaR/mKFA9+AmDDLB13sO2+IgJxvEjDXkdDHbTnHwPgX1pUBo+d0evTZhcoqpRz
+UiqvsT2pyUb8FsRH83DReyM4qaV8EzOEjM8wIZEvO29Wn6cxcRxADE7Cn1I6k3Q9
+rheEYNIzU3d+vrwdQQg+fc7qTmYr6swnU7fNOGawHufkHjaXiZJZk0jztVnp/m/G
+3BfenTy+UWEa3CIk5l80LRJ/QHO+kCXnlunkW5ky7DkRulcXcT30R1qF5OzQQYC1
+gL4lHrd9HG6yR++3CWzwt9AxSrmbzDL2Y56wZjtJcKfNiSeHIIWZ7y1gnFHzGyJT
+QTDXvETAVdNIrLbjuRWrjp11l1x4w6TgWsKoi/1sY7Wr4r+oga+UNLiQhpJJy94J
+AroefkBNZwIDAQABo0IwQDAdBgNVHQ4EFgQU7X6M21DSCxWu/lDNUDII1del8YIw
+EgYDVR0TAQH/BAgwBgEB/wIBADALBgNVHQ8EBAMCAQYwDQYJKoZIhvcNAQEMBQAD
+ggGBAL2gxg4vYo4MVQPujzOTmrAKuRlG0uT3gwgKfyCTNbPrlQE/ux0aYdg7ZcQg
+LBjHqxTJMsq7Lo/Y1c8DvqtBEcSFTfJ3A/HRJj9I5Wkuj9AzGdXX/J9RH9xdzIEU
+bqxap847vC8ddrBHGD7E5K6tilRzsZe412I+ymVPylM0mDJm9YOihojfhqlBGDYR
+9qDYFWcbnwsHrna/qIywLtZrJMs4xOX+Oz8LPdqGZ1+TPEahEUl6WxH0ivggorFw
+lx69r+wQN6x/ETrbXLj5AkwUo0LcQi/RXN5Vis9VQcVtWUrz6Tt96k0q8x1WsR7M
+93lnSusJEOn7d8NhuQ7iZdGv4qy7h1J92iWVxswYvAV15AmOOzmuFlQxBfkviFH/
+KCq03oic8tsZadXAtapY4MHo6dqtHQw1Zc1e27+X4p2qOzwBK94UQlhUeTCrALXq
+187ebDb5S0ZRCvxBTgzThxgfgg00jcjNr+wxkQBzf5xPkpy4nQ9qtEndZ4zJOTgh
+Ac412g==
+-----END CERTIFICATE-----
+"
+
+# connect to remote MySQL server and database
+mydb.aiven <-  dbConnect(RMySQL::MySQL(), 
+                         user = db_user_aiven, 
+                         password = db_pwd_aiven,
+                         dbname = db_name_aiven, 
+                         host = db_host_aiven, 
+                         port = db_port_aiven,
+                         sslmode = "require",
+                         sslcert = db_cert)
+```
+
+## Analysis by Month
+The following will be the table contain the total number of incident by type and month:
+```{r monthAnalysisTable, eval = T, echo = F, message = F, warning = F}
+# Query to get relevant data for month and count of each incident type
+monthly_incident_query <- paste0(
+  "SELECT ",
+  "MONTHNAME(i.incidentDate) as Month, ",
+  "it.incidentTypeName as IncidentType, ",
+  "COUNT(*) as TotalIncidents ",
+  "FROM Incidents i ",
+  "JOIN IncidentTypes it ON i.incidentTypeId = it.incidentTypeId ",
+  "GROUP BY MONTH(i.incidentDate), MONTHNAME(i.incidentDate), it.incidentTypeName ",
+  "ORDER BY MONTH(i.incidentDate), it.incidentTypeName"
+)
+
+# Execute the query
+monthly_incident_data <- dbGetQuery(mydb.aiven, monthly_incident_query)
+
+# Getting unique month and incident type 
+unique_months <- unique(monthly_incident_data$Month)  
+unique_types <- unique(monthly_incident_data$IncidentType) 
+
+# Initiate empty df for month and type set to 0
+incidents_df <- data.frame(Month = unique_months)
+for(type in unique_types) {
+  incidents_df[[type]] <- 0 
+}
+
+# Fill df with incident counts 
+# Loop through each row and get month, incident type and calculate the counts
+for(i in 1:nrow(monthly_incident_data)) {
+  month <- monthly_incident_data$Month[i]     
+  type <- monthly_incident_data$IncidentType[i] 
+  count <- monthly_incident_data$TotalIncidents[i]  
+  
+  # Find the row for specific month and set the count the expected incident type
+  row_index <- which(incidents_df$Month == month)
+  incidents_df[row_index, type] <- count
+}
+
+# Add col to calculate sum accross the incident type
+incidents_df$Total <- rowSums(incidents_df[, -1])
+
+# Create formatted table using kable
+kable(incidents_df, 
+      caption = "Total Number of Incidents by Type and Month",
+      align = "c")
+```
+```{r monthAnalysisStats, eval = T, echo = F, message = F, warning = F}
+# Calculate monthly stats
+monthly_totals <- rowSums(incidents_df[, -c(1, ncol(incidents_df))])
+min_month <- incidents_df$Month[which.min(incidents_df$Total)]
+max_month <- incidents_df$Month[which.max(incidents_df$Total)]
+min_total <- min(incidents_df$Total)
+max_total <- max(incidents_df$Total)
+
+summer_months <- c("May", "June", "July", "August", "September")
+summer_avg <- mean(incidents_df$Total[incidents_df$Month %in% summer_months])
+
+winter_months <- c("December", "January", "February")
+winter_avg <- mean(incidents_df$Total[incidents_df$Month %in% winter_months])
+```
+
+The monthly incident table shows a strong seasonal pattern in bird strike activity. Winter months seems to have a lower activity with `r min_month` having the least incidents (`r min_total` incidents) and `r max_month` show most acivity with `r max_total` incidents. In Summer month (May - September), the average `r round(summer_avg, 0)` incidents per month while the Winter month (December - February) average only `r round(winter_avg, 0)` incidents per month. This is around `r round((summer_avg - winter_avg) / winter_avg * 100, 0)` % increased during the warmer months. The reason to this might due to the bird migration season which makes summer months a more critical periods for preventing bird strike incident.
+
+## Analysis by Airline
+```{r airlineAnalysis, eval = T, echo = F, message = F, warning = F}
+# Query to create a view
+# The view summarizes incident data by airline and calculates summary statistics
+create_view_query <- paste0(
+  "CREATE OR REPLACE VIEW AirlineIncidentSummary AS ",
+  "SELECT ",
+  "a.airline_name as Airline, ",
+  "COUNT(i.iid) as TotalIncidents, ",
+  "ROUND(AVG(CASE WHEN i.delayMinute > 0 THEN i.delayMinute ELSE NULL END), 2) as AverageDelay ",
+  "FROM Airlines a ",
+  "JOIN Flights f ON a.airlineId = f.airlineId ",
+  "JOIN Incidents i ON f.flightId = i.flightId ",
+  "GROUP BY a.airlineId, a.airline_name ",
+  "ORDER BY TotalIncidents DESC"
+)
+
+# Execute the query to create the view
+invisible(dbExecute(mydb.aiven, create_view_query))
+
+# Query to get all data from view we created
+airline_summary_query <- paste0(
+  "SELECT * FROM AirlineIncidentSummary"
+)
+
+# Execute the query
+airline_summary <- dbGetQuery(mydb.aiven, airline_summary_query)
+
+# Create formatted table for airline summary
+airline_summary_col <- c("Airline", "Total Incidents", "Average Delay (minutes)")
+
+# Create table for airline incident summary
+kable(airline_summary,
+      caption = "Incident Summary and Average Delay by Airline",
+      col.names = c("Airline", "Total Incidents", "Average Delay (minutes)"),
+      align = c("l", "c", "c"))
+```
+
+```{r airlineAnalysisStats, eval = T, echo = F, message = F, warning = F}
+# Calculate airline stats
+top_airline <- airline_summary$Airline[1]
+top_incidents <- airline_summary$TotalIncidents[1]
+
+bottom_airline <- airline_summary$Airline[nrow(airline_summary)]
+bottom_incidents <- airline_summary$TotalIncidents[nrow(airline_summary)]
+
+incident_range <- top_incidents - bottom_incidents
+
+avg_delay_min <- min(airline_summary$AverageDelay)
+avg_delay_max <- max(airline_summary$AverageDelay)
+
+best_delay_airline <- airline_summary$Airline[which.min(airline_summary$AverageDelay)]
+worst_delay_airline <- airline_summary$Airline[which.max(airline_summary$AverageDelay)]
+
+delay_variance <- avg_delay_max - avg_delay_min
+```
+
+The airline analysis shows the performance between airline, with total incidents  from `r bottom_incidents` (`r bottom_airline`) to `r top_incidents` (`r top_airline`) with a difference of `r incident_range` incidents. This show us that the incident is mostly correlates with operation volume. We observe a average delay vary by `r round(delay_variance, 1)` minutes between the best (`r best_delay_airline` at `r avg_delay_min` minutes) and worst (`r worst_delay_airline` at `r avg_delay_max` minutes) airline. The small variance shows overall industry protocols for incident response. The differences are likely due to other operational reason than the safety protocol issue.
+
+## Trend by Year
+```{r plotTrendByYear, eval = T, echo = F, message = F, warning = F}
+# Create SQL query using paste0
+yearly_incidents_query <- paste0(
+  "SELECT ",
+  "YEAR(incidentDate) as Year, ",
+  "COUNT(*) as TotalIncidents ",
+  "FROM Incidents ",
+  "GROUP BY YEAR(incidentDate) ",
+  "ORDER BY Year"
+)
+
+# Execute the query
+yearly_incident_data <- dbGetQuery(mydb.aiven, yearly_incidents_query)
+
+# Get data for x and y axis
+x <- yearly_incident_data$Year
+y <- yearly_incident_data$TotalIncidents
+
+# Create line chart
+# Setting up the plot
+plot(x, y, 
+     type = "o", pch = 16, col = "steelblue",
+     main = "Bird Strike Incidents Trend by Year",
+     xlab = "Year", ylab = "Total Number of Incidents",
+     ylim = c(500, 1250))
+
+
+# Add data labels on top of each data (total incidents by year)
+# Reference https://www.spsanderson.com/steveondata/posts/2023-08-07/index.html
+text(x, y, labels = yearly_incident_data$TotalIncidents,
+     pos = 3, cex = 0.8, col = "black")
+
+
+# Add legend
+par(xpd = TRUE)
+legend(x = 2022,y = 1450,
+       legend = c("Incidents"),
+       col = c("steelblue"),
+       lwd = 2,
+       pch = c(16, NA))
+```
+
+```{r trendByYearStats, eval = T, echo = F, message = F, warning = F}
+# Calculate yearly stats
+total_years <- nrow(yearly_incident_data)
+
+start_year <- min(yearly_incident_data$Year)
+end_year <- max(yearly_incident_data$Year)
+
+start_incidents <- yearly_incident_data$TotalIncidents[1]
+end_incidents <- yearly_incident_data$TotalIncidents[nrow(yearly_incident_data)]
+
+# Calculate data for raising trend and stable period
+raising_incidents <- yearly_incident_data$TotalIncidents[2]
+stable_start_year <- 2009
+stable_end_year <- 2022
+stable_period <- yearly_incident_data[yearly_incident_data$Year >= stable_start_year & yearly_incident_data$Year <= stable_end_year, ]
+stable_min <- min(stable_period$TotalIncidents)
+stable_max <- max(stable_period$TotalIncidents)
+avg_incidents <- round(mean(stable_period$TotalIncidents), 1)
+
+# Calculate peak
+peak_year <- yearly_incident_data$Year[which.max(yearly_incident_data$TotalIncidents)]
+peak_incidents <- max(yearly_incident_data$TotalIncidents)
+
+# Disconnect from DB
+invisible(dbDisconnect(mydb.aiven))
+```
+The visualization analayze `r total_years` year from `r start_year` to `r end_year` showing the trend for airline safety evlotion. It start with `r start_incidents` in `r start_year`, but in the next year the incidents raise dramatically to `r raising_incidents` incidents in `r stable_start_year` and then maintain this level between `r stable_min` - `r stable_max` incidents annually through  `r stable_end_year` with average of `r avg_incidents` incidents per year. In `r peak_year` there is a peak occur with `r peak_incidents` incidents. And at the very end of the trend, there is a sharp decline to `r end_incidents` incidents in `r end_year` which create a situation that the beginning and ending years are having a significantly lower incidents acitivities compare to the middle of the trend. This situation shows that there there are some factor that might cause the significant changes during early and end of the periods. Some posibility might be in the early stage there is a new prevention system is being added to the airline operation and it is taking sometimes for them to adapt to the system in the middle which cause the higher number of incidents and in the end new updates is made into the system and makes it more effective which reduce the incidents activities.
+
+
+
